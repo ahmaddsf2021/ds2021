@@ -23,8 +23,21 @@ public class MovieCritics {
          for (int i = 0; i < nbMovies; i++) {
             System.out.println("Please enter the name of the movie number"+ (i+1) + ":");
             movieNames[i]=inFromKeyboard.nextLine();
-             System.out.println("========================================");
+            
              
+        } 
+        System.out.println("Enter the number of attendees:");
+        final int nbAttendees = inFromKeyboard.nextInt();
+        System.out.println("========================================");
+        for (int i = 0; i < nbAttendees; i++) {
+            System.out.println("Welcome to Cinema Critics!");//bdna kel attendie ysawet 3la kel el movies
+            //thats why 7atyna double loop
+            for (int j = 0; j < nbMovies; j++) {
+                System.out.println("Please, enter a rating between 1 and 5 for "
+                        + movieNames[j]+ ":");
+                final String rating = inFromKeyboard.nextLine();
+                
+            }
         }
     }
     
