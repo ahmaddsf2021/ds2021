@@ -104,5 +104,21 @@ public abstract class LinkedList implements List {
             return size;
         }
     }
-
+List exclude(List anotherList){
+    
+    
+        return null;
+}
+public int getLastIndexOf(Object item){
+         int index = 0;
+        Node current = head;
+        while (current != null) {
+            if (current.value.equals(item)&& current.next== null) {
+                return index;
+            }
+            index++;
+            current = current.next;
+        }
+        return -1;
+}
 }
