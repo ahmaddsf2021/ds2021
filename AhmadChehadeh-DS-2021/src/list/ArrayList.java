@@ -100,5 +100,18 @@ public class ArrayList implements List {
         
         
 }
+    public boolean containsAll(List anotherList){
+        boolean found = false; 
+        
+      for (int i = 0; i < list.length; i++) {
+          if(anotherList[i].equals(list[i]))
+              
+          }
+        return found;
+        
+                
+            
+    }
+        
 }
 
