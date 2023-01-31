@@ -1,0 +1,66 @@
+<h1>MONGODB - EXERCISE</h1>
+<section class="insert">
+    <h3>Insert Data</h3>
+    <form action="/insert" method="post">
+       <div class="input">
+         <label for="countryCode">countryCode</label>
+         <input id='number' onchange="this.value = '+961' + this.value" type="text">
+      </div>
+      
+       <div class="input">
+         <label for="countryName">countryName</label>
+         <input id='countryName' name="countryName" type="text">
+      </div>
+       <div class="input">
+         <label for="numberphone">numberphone</label>
+         <input id='numberphone' name="numberphone" type="number">
+      </div>
+      <button type="submit">Insert</button>
+    </form>
+</section>
+<section class="get">
+    <h3>Get Data</h3>
+    <a href="/get-data">LOAD DATA</a>
+    <div>
+        {{# each items}}
+          <article class="item">
+            <div>countryCode:{{ this.countryCode }}</div>
+            <div>countryName:{{ this.countryName }}</div>
+            <div>numberphone:{{ this.numberphone }}</div>
+            <div>ID: {{this_id }}</div>
+          </article>
+          {{/each}}
+    </div>
+</section>
+<section class="update">
+    <h3>Update Data</h3>
+    <form action="/update" method="post">
+    <div class="input">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id">
+    </div>
+    <div class="input">
+         <label for="countryCode">countryCode</label>
+         <input id='number' onchange="this.value = '+961' + this.value" type="text">
+    </div>
+    <div class="input">
+        <label for="countryName">countryName</label>
+         <input id='countryName' name="countryName" type="text">
+    </div>
+    <div class="input">
+       <label for="numberphone">numberphone</label>
+         <input id='numberphone' name="numberphone" type="number">  
+    </div>
+    <button type="submit">Update</button>
+    </form>
+</section>
+<section class="delete">
+    <h3>DELETE DATA</h3>
+    <form action="/delete" method="post">
+    <div class="input">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id">
+    </div>
+    <button type="submit">DELETE</button>
+    </form>
+</section>
