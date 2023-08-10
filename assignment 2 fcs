@@ -1,0 +1,179 @@
+#exercise 1:
+def reverse_and_concatenate(s, i):
+  # check if i is a valid integer
+  if not isinstance(i, int):
+    return "Invalid input: i must be an integer"
+  # check if i is zero or negative
+  if i <= 0:
+    return ""
+  # reverse the string s
+  reversed_s = s[::-1]
+  # concatenate the reversed string i times
+  result = reversed_s * i
+  # return the result
+  return result
+print(reverse_and_concatenate("hello", 2)) # prints "olleholleh"
+print(reverse_and_concatenate("abc", 3)) # prints "cbacbacba"
+print(reverse_and_concatenate("hi", 0)) # prints ""
+print(reverse_and_concatenate("bye", -1)) # prints ""
+print(reverse_and_concatenate("wow", 1.5)) # prints "Invalid input: i must be an integer"
+print("*")
+#exercise 2:
+def rearrange(s):
+  # initialize an empty string for the result
+  result = ""
+  # loop through the characters in s
+  for c in s:
+    # if the character is upper case, add it to the beginning of the result
+    if c.isupper():
+      result = c + result
+    # otherwise, add it to the end of the result
+    else:
+      result = result + c
+  # return the final result
+  return result
+print(rearrange("Hello World")) # HWelloorld
+print(rearrange("aBcDeFg")) # BDFaegc
+print(rearrange("Python")) # Python
+print("**")
+#exercise 3:
+def is_reordering(s1, s2):
+    return sorted(s1) == sorted(s2)
+s1 = "abcde"
+s2 = "edacb"
+print(is_reordering(s1, s2)) # True
+
+s1 = "aabc"
+s2 = "edabc"
+print(is_reordering(s1, s2)) # False
+print("**")
+def is_reordering(s1, s2):
+  # check if the lengths are equal
+  if len(s1) != len(s2):
+    return False
+  # sort the strings and compare them
+  s1_sorted = sorted(s1)
+  s2_sorted = sorted(s2)
+  return s1_sorted == s2_sorted
+print(is_reordering("abcde", "edacb")) # True
+print(is_reordering("aabc", "edabc")) # False
+print(is_reordering("hello", "olleh")) # True
+print("**")
+#exercise 4:
+def find_max_and_min(l):
+  # initialize the max and min values and their indices
+  max_value = l[0]
+  max_index = 0
+  min_value = l[0]
+  min_index = 0
+
+  # loop through the list and compare each element with the current max and min values
+  for i in range(1, len(l)):
+    if l[i] > max_value:
+      # update the max value and its index
+      max_value = l[i]
+      max_index = i
+    elif l[i] < min_value:
+      # update the min value and its index
+      min_value = l[i]
+      min_index = i
+
+  # return a string with the max and min values and their indices
+  return f"the highest value in the list is {max_value} at index {max_index}, and the lowest value in the list is {min_value} at index {min_index}"
+
+# test the function with an example list
+l = [5,6,3,2,7,2,0,1,6]
+print(find_max_and_min(l))
+print("**")
+#exercise 5:
+# Define a recursive function that counts the digits of a number
+def count_digits(number):
+  # Base case: if the number is 0, return 0
+  if number == 0:
+    return 0
+  # Recursive case: return 1 plus the result of calling the function on the number divided by 10
+  else:
+    return 1 + count_digits(number // 10)
+
+# Call the function on some input numbers and print the results
+input1 = 123
+output1 = count_digits(input1)
+print(f"The number of digits in {input1} is {output1}.")
+
+input2 = 10000
+output2 = count_digits(input2)
+print(f"The number of digits in {input2} is {output2}.")
+def list_jumps(jumps):
+  # initialize the current index and a set of visited indices
+  index = 0
+  visited = set()
+  # loop until the index is out of bounds or revisits a previous index
+  while index >= 0 and index < len(jumps):
+    # check if the index is already visited
+    if index in visited:
+      return "cycle" # there is a cycle
+    # mark the index as visited and update it with the jump value
+    visited.add(index)
+    index += jumps[index]
+  # if the loop exits, the index is out of bounds
+  return "out-of-bounds"
+
+# examples
+print(list_jumps([2, -1, 1, -3])) # output: out-of-bounds
+print(list_jumps([1, -1])) # output: cycle
+# define a dictionary of items with barcode as key and name and price as value
+items = {
+  "1234": ("milk", 2.5),
+  "5678": ("bread", 1.0),
+  "9012": ("eggs", 3.0),
+}
+
+# define a function that prints a receipt given a list of purchased items
+def print_receipt(purchases):
+  # initialize the total amount
+  total = 0
+  # loop through the purchases and print each item with quantity and cost
+  for barcode, quantity in purchases:
+    name, price = items[barcode]
+    cost = quantity * price
+    print(f"{name} x {quantity} = {cost}")
+    total += cost
+  # print the total amount at the end
+  print(f"Total = {total}")
+
+# define a function that starts a new receipt and returns a list of purchased items
+def start_receipt():
+  # initialize an empty list of purchases
+  purchases = []
+  # loop until the user chooses to stop adding items
+  while True:
+    # prompt for an item barcode and validate it
+    barcode = input("Enter item barcode: ")
+    if barcode not in items:
+      print("Invalid barcode")
+      continue
+    # prompt for an item quantity and validate it
+    quantity = int(input("Enter item quantity: "))
+    if quantity <= 0:
+      print("Invalid quantity")
+      continue
+    # add the barcode and quantity to the purchases list
+    purchases.append((barcode, quantity))
+    # ask if the user wants to add another item and break the loop if not
+    answer = input("Do you want to add another item? (y/n) ")
+    if answer.lower() != "y":
+      break
+  # return the purchases list
+  return purchases
+
+# main loop of the system
+while True:
+  # ask if the user wants to start a new receipt and exit the system if not
+  answer = input("Do you want to start a new receipt? (y/n) ")
+  if answer.lower() != "y":
+    print("Exiting system")
+    break
+  # start a new receipt and get the list of purchases
+  purchases = start_receipt()
+  # print the receipt for the purchases
+  print_receipt(purchases)
